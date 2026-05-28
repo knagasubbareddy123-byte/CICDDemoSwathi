@@ -30,7 +30,7 @@ jobs:
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: azurede
-          template: ./ADF-Demo-DEV-Swath/ARMTemplateForFactory.json
+          template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
           parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
           deploymentMode: Incremental
 
