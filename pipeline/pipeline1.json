@@ -12,6 +12,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"factoryName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
