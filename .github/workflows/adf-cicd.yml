@@ -29,10 +29,10 @@ jobs:
         uses: azure/arm-deploy@v2
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
-          resourceGroupName: azurede
+          resourceGroupName: azurede-qa
           template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
           parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
-          additionalArguments: '-factoryName ADF-Demo-QA-Swathi'
+          # additionalArguments: '-factoryName ADF-Demo-QA-Swathi'
           deploymentMode: Incremental
 
 
@@ -57,8 +57,8 @@ jobs:
         uses: azure/arm-deploy@v2
         with:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
-          resourceGroupName: azurede
+          resourceGroupName: azurede-prod
           template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
           parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
-          additionalArguments: '-factoryName ADF-Demo-Prod-Swathi'
+          # additionalArguments: '-factoryName ADF-Demo-Prod-Swathi'
           deploymentMode: Incremental
