@@ -32,7 +32,7 @@ jobs:
           resourceGroupName: azurede
           template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
           parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
-          overrideParameters: '-factoryName ADF-Demo-QA-Swathi'
+          additionalArguments: '-factoryName ADF-Demo-QA-Swathi'
           deploymentMode: Incremental
 
 
@@ -60,5 +60,5 @@ jobs:
           resourceGroupName: azurede
           template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
           parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
-          overrideParameters: '-factoryName ADF-Demo-Prod-Swathi'
+          additionalArguments: '-factoryName ADF-Demo-Prod-Swathi'
           deploymentMode: Incremental
