@@ -1,0 +1,15 @@
+{
+	"name": "ADF-Demo-DEV-Swathi",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "22cea7a8-8ba8-4835-a69e-dd17340ebb59",
+		"tenantId": "2ba309bb-d02a-4f05-92af-4ee2ace4818c"
+	}
+}
