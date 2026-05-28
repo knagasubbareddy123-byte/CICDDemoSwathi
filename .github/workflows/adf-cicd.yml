@@ -7,9 +7,6 @@ on:
 
 jobs:
 
-
-
-
 # =========================
 # DEPLOY TO QA
 # =========================
@@ -31,18 +28,17 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: azurede-qa
           template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
-          parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
-          # additionalArguments: '-factoryName ADF-Demo-QA-Swathi'
+          parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParameters_QA.json
           deploymentMode: Incremental
 
 
 # =========================
-# DEPLOY TO PROD (WITH APPROVAL)
+# DEPLOY TO PROD
 # =========================
   deploy-prod:
     needs: deploy-qa
     runs-on: ubuntu-latest
-    environment: prod   # 👈 THIS ENABLES APPROVAL GATE
+    environment: prod   # approval gate in GitHub
 
     steps:
       - name: Checkout repo
@@ -59,6 +55,5 @@ jobs:
           subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
           resourceGroupName: azurede-prod
           template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
-          parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
-          # additionalArguments: '-factoryName ADF-Demo-Prod-Swathi'
+          parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParameters_PROD.json
           deploymentMode: Incremental
