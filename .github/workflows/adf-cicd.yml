@@ -1,0 +1,62 @@
+name: ADF CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - adf_publish
+
+jobs:
+
+
+
+
+# =========================
+# DEPLOY TO QA
+# =========================
+  deploy-qa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to QA ADF
+        uses: azure/arm-deploy@v2
+        with:
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+          resourceGroupName: azurede
+          template: ./ADF-Demo-DEV-Swath/ARMTemplateForFactory.json
+          parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
+          deploymentMode: Incremental
+
+
+# =========================
+# DEPLOY TO PROD (WITH APPROVAL)
+# =========================
+  deploy-prod:
+    needs: deploy-qa
+    runs-on: ubuntu-latest
+    environment: prod   # 👈 THIS ENABLES APPROVAL GATE
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to PROD ADF
+        uses: azure/arm-deploy@v2
+        with:
+          subscriptionId: ${{ secrets.SUBSCRIPTION_ID }}
+          resourceGroupName: azurede
+          template: ./ADF-Demo-DEV-Swathi/ARMTemplateForFactory.json
+          parameters: ./ADF-Demo-DEV-Swathi/ARMTemplateParametersForFactory.json
+          deploymentMode: Incremental
